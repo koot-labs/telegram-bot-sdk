@@ -11,5 +11,5 @@ namespace Telegram\Bot\Objects\BotCommandScope;
  */
 class BotCommandScopeChat extends BotCommandScope
 {
-    protected string $type = 'chat';
+    protected $type = 'chat';
 }

@@ -9,5 +9,5 @@ namespace Telegram\Bot\Objects\BotCommandScope;
  */
 class BotCommandScopeDefault extends BotCommandScope
 {
-    protected string $type = 'default';
+    protected $type = 'default';
 }

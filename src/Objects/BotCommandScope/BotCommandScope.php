@@ -9,7 +9,8 @@ use Telegram\Bot\Objects\AbstractCreateObject;
  */
 abstract class BotCommandScope extends AbstractCreateObject
 {
-    protected string $type;
+    /** @var string Scope type. Should be set in child classes. */
+    protected $type;
 
     /**
      * Create a new object.

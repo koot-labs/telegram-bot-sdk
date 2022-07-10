@@ -9,5 +9,5 @@ namespace Telegram\Bot\Objects\BotCommandScope;
  */
 class BotCommandScopeAllGroupChats extends BotCommandScope
 {
-    protected string $type = 'all_group_chats';
+    protected $type = 'all_group_chats';
 }

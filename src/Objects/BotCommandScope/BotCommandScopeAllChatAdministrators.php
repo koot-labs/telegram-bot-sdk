@@ -9,5 +9,5 @@ namespace Telegram\Bot\Objects\BotCommandScope;
  */
 class BotCommandScopeAllChatAdministrators extends BotCommandScope
 {
-    protected string $type = 'all_chat_administrators';
+    protected $type = 'all_chat_administrators';
 }
