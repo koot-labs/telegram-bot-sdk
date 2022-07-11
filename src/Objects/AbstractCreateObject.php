@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
  * This base class is used for when the user needs to create
  * an object to be sent TO telegram.
  */
-abstract class AbstractCreateObject extends BaseObject
+abstract class AbstractCreateObject extends AbstractObject
 {
     /**
      * Create a new object.
