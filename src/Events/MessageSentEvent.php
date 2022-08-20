@@ -9,14 +9,14 @@ use Telegram\Bot\Objects\Message;
 final class MessageSentEvent extends AbstractEvent
 {
     /** @var \Telegram\Bot\Api */
-    public $api;
+    public $telegram;
 
     /** @var \Telegram\Bot\Objects\Message */
     public $message;
 
-    public function __construct(Api $bot, Message $message)
+    public function __construct(Api $telegram, Message $message)
     {
-        $this->api = $bot;
+        $this->telegram = $telegram;
         $this->message = $message;
     }
 }
