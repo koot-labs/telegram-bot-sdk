@@ -45,7 +45,7 @@ trait Message
         $response = $this->post('sendMessage', $params);
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -76,7 +76,7 @@ trait Message
         $response = $this->post('forwardMessage', $params);
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -115,7 +115,7 @@ trait Message
         $response = $this->post('copyMessage', $params);
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -151,7 +151,7 @@ trait Message
         $response = $this->uploadFile('sendPhoto', $params, 'photo');
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -191,7 +191,7 @@ trait Message
         $response = $this->uploadFile('sendAudio', $params, 'audio');
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -229,7 +229,7 @@ trait Message
         $response = $this->uploadFile('sendDocument', $params, 'document');
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -271,7 +271,7 @@ trait Message
         $response = $this->uploadFile('sendVideo', $params, 'video');
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -311,7 +311,7 @@ trait Message
         $response = $this->uploadFile('sendAnimation', $params, 'animation');
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -348,7 +348,7 @@ trait Message
         $response = $this->uploadFile('sendVoice', $params, 'voice');
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -384,7 +384,7 @@ trait Message
         $response = $this->uploadFile('sendVideoNote', $params, 'video_note');
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -417,7 +417,7 @@ trait Message
         $response = $this->uploadFile('sendMediaGroup', $params, 'media');
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -457,7 +457,7 @@ trait Message
         $response = $this->post('sendVenue', $params);
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -493,7 +493,7 @@ trait Message
         $response = $this->post('sendContact', $params);
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -542,7 +542,7 @@ trait Message
         $response = $this->post('sendPoll', $params);
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -577,7 +577,7 @@ trait Message
         $response = $this->post('sendDice', $params);
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }

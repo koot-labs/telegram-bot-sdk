@@ -43,7 +43,7 @@ trait Game
         $response = $this->post('sendGame', $params);
 
         $message = new Message($response->getDecodedBody());
-        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent(new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -76,7 +76,7 @@ trait Game
         $response = $this->post('setGameScore', $params);
 
         $message = new Message($response->getDecodedBody());
-        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent(new MessageSentEvent($this, $message));
 
         return $message;
     }
