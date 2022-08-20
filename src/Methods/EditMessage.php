@@ -2,6 +2,7 @@
 
 namespace Telegram\Bot\Methods;
 
+use Telegram\Bot\Events\MessageSentEvent;
 use Telegram\Bot\Exceptions\TelegramSDKException;
 use Telegram\Bot\Objects\Message;
 use Telegram\Bot\Objects\Poll;
@@ -42,7 +43,10 @@ trait EditMessage
     {
         $response = $this->post('editMessageText', $params);
 
-        return new Message($response->getDecodedBody());
+        $message = new Message($response->getDecodedBody());
+        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 
     /**
@@ -71,7 +75,10 @@ trait EditMessage
     {
         $response = $this->post('editMessageCaption', $params);
 
-        return new Message($response->getDecodedBody());
+        $message = new Message($response->getDecodedBody());
+        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 
     /**
@@ -99,7 +106,10 @@ trait EditMessage
     {
         $response = $this->post('editMessageMedia', $params);
 
-        return new Message($response->getDecodedBody());
+        $message = new Message($response->getDecodedBody());
+        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 
     /**
@@ -126,7 +136,10 @@ trait EditMessage
     {
         $response = $this->post('editMessageReplyMarkup', $params);
 
-        return new Message($response->getDecodedBody());
+        $message = new Message($response->getDecodedBody());
+        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 
     /**

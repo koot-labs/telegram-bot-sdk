@@ -2,6 +2,7 @@
 
 namespace Telegram\Bot\Methods;
 
+use Telegram\Bot\Events\MessageSentEvent;
 use Telegram\Bot\Exceptions\TelegramSDKException;
 use Telegram\Bot\Objects\Message as MessageObject;
 use Telegram\Bot\Traits\Http;
@@ -45,7 +46,10 @@ trait Location
     {
         $response = $this->post('sendLocation', $params);
 
-        return new MessageObject($response->getDecodedBody());
+        $message = new MessageObject($response->getDecodedBody());
+        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 
     /**
@@ -77,7 +81,10 @@ trait Location
     {
         $response = $this->post('editMessageLiveLocation', $params);
 
-        return new MessageObject($response->getDecodedBody());
+        $message = new MessageObject($response->getDecodedBody());
+        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 
     /**
@@ -104,6 +111,9 @@ trait Location
     {
         $response = $this->post('stopMessageLiveLocation', $params);
 
-        return new MessageObject($response->getDecodedBody());
+        $message = new MessageObject($response->getDecodedBody());
+        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 }
