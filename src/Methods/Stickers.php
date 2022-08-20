@@ -2,6 +2,7 @@
 
 namespace Telegram\Bot\Methods;
 
+use Telegram\Bot\Events\MessageSentEvent;
 use Telegram\Bot\Exceptions\TelegramSDKException;
 use Telegram\Bot\Objects\File;
 use Telegram\Bot\Objects\Message as MessageObject;
@@ -41,7 +42,10 @@ trait Stickers
     {
         $response = $this->uploadFile('sendSticker', $params, 'sticker');
 
-        return new MessageObject($response->getDecodedBody());
+        $message = new MessageObject($response->getDecodedBody());
+        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 
     /**

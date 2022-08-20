@@ -2,6 +2,7 @@
 
 namespace Telegram\Bot\Methods;
 
+use Telegram\Bot\Events\MessageSentEvent;
 use Telegram\Bot\Exceptions\TelegramSDKException;
 use Telegram\Bot\Objects\GameHighScore;
 use Telegram\Bot\Objects\Message;
@@ -41,7 +42,10 @@ trait Game
     {
         $response = $this->post('sendGame', $params);
 
-        return new Message($response->getDecodedBody());
+        $message = new Message($response->getDecodedBody());
+        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 
     /**
@@ -71,7 +75,10 @@ trait Game
     {
         $response = $this->post('setGameScore', $params);
 
-        return new Message($response->getDecodedBody());
+        $message = new Message($response->getDecodedBody());
+        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Telegram\Bot\Methods;
 
+use Telegram\Bot\Events\MessageSentEvent;
 use Illuminate\Support\Arr;
 use Telegram\Bot\Exceptions\TelegramSDKException;
 use Telegram\Bot\Objects\Message;
@@ -62,7 +63,10 @@ trait Payments
         $params['prices'] = json_encode(Arr::wrap($params['prices']));
         $response = $this->post('sendInvoice', $params);
 
-        return new Message($response->getDecodedBody());
+        $message = new Message($response->getDecodedBody());
+        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+
+        return $message;
     }
 
     /**
