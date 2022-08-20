@@ -43,7 +43,7 @@ trait Stickers
         $response = $this->uploadFile('sendSticker', $params, 'sticker');
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }

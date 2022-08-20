@@ -44,7 +44,7 @@ trait EditMessage
         $response = $this->post('editMessageText', $params);
 
         $message = new Message($response->getDecodedBody());
-        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent(new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -76,7 +76,7 @@ trait EditMessage
         $response = $this->post('editMessageCaption', $params);
 
         $message = new Message($response->getDecodedBody());
-        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent(new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -107,7 +107,7 @@ trait EditMessage
         $response = $this->post('editMessageMedia', $params);
 
         $message = new Message($response->getDecodedBody());
-        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent(new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -137,7 +137,7 @@ trait EditMessage
         $response = $this->post('editMessageReplyMarkup', $params);
 
         $message = new Message($response->getDecodedBody());
-        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent(new MessageSentEvent($this, $message));
 
         return $message;
     }

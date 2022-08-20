@@ -64,7 +64,7 @@ trait Payments
         $response = $this->post('sendInvoice', $params);
 
         $message = new Message($response->getDecodedBody());
-        $this->emitEvent(new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent(new MessageSentEvent($this, $message));
 
         return $message;
     }

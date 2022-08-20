@@ -47,7 +47,7 @@ trait Location
         $response = $this->post('sendLocation', $params);
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -82,7 +82,7 @@ trait Location
         $response = $this->post('editMessageLiveLocation', $params);
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
@@ -112,7 +112,7 @@ trait Location
         $response = $this->post('stopMessageLiveLocation', $params);
 
         $message = new MessageObject($response->getDecodedBody());
-        $this->emitEvent('messageSent', new MessageSentEvent($this->getTelegram(), $message));
+        $this->emitEvent('messageSent', new MessageSentEvent($this, $message));
 
         return $message;
     }
